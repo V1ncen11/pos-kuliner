@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin — Seblak Saiton</title>
+    <title>Login Admin — Resto Cafe</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,7 @@
         }
         .banner-overlay {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(37,99,235,0.7) 100%);
+            background: linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(22,163,74,0.7) 100%);
             backdrop-filter: blur(2px);
         }
         .banner-content {
@@ -39,9 +39,9 @@
         .banner-content i {
             display: inline-block;
             font-size: 4rem;
-            color: #93C5FD;
+            color: #86EFAC;
             margin-bottom: 1rem;
-            filter: drop-shadow(0 0 20px rgba(147, 197, 253, 0.5));
+            filter: drop-shadow(0 0 20px rgba(134, 239, 172, 0.5));
             animation: float 3s ease-in-out infinite;
         }
         .banner-content h1 {
@@ -96,18 +96,18 @@
             transition: all 0.3s; background: #F8FAFC;
         }
         .input-group input:focus {
-            outline: none; border-color: #2563EB; background: white;
-            box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+            outline: none; border-color: #16A34A; background: white;
+            box-shadow: 0 0 0 4px rgba(22,163,74,0.1);
         }
-        .input-group input:focus + i { color: #2563EB; }
+        .input-group input:focus + i { color: #16A34A; }
         
         .btn-login {
-            width: 100%; background: #2563EB; color: white; border: none;
+            width: 100%; background: #16A34A; color: white; border: none;
             padding: 0.8rem; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
             cursor: pointer; transition: all 0.3s; margin-top: 1rem;
             font-family: 'Poppins', sans-serif; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
         }
-        .btn-login:hover { background: #1D4ED8; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,0.25); }
+        .btn-login:hover { background: #15803D; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(22,163,74,0.25); }
         
         .back-link {
             display: inline-block; margin-top: 2rem; color: #64748B;
@@ -134,15 +134,15 @@
         <div class="login-banner">
             <div class="banner-overlay"></div>
             <div class="banner-content">
-                <i class="bi bi-fire"></i>
-                <h1>Seblak Saiton</h1>
+                <i class="bi bi-flower2"></i>
+                <h1>Resto Cafe</h1>
                 <p>Sistem Informasi Kasir & Manajemen Pemesanan Digital</p>
             </div>
         </div>
         <div class="login-form-container">
             <div class="login-box animate-slide-up">
                 <div class="login-box-header">
-                    <h2>Selamat Datang! 👋</h2>
+                    <h2>Selamat Datang!</h2>
                     <p>Silakan login untuk mengakses admin panel.</p>
                 </div>
 

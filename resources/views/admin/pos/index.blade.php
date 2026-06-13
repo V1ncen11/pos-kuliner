@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Kasir POS — Seblak Saiton')
+@section('title', 'Kasir POS — Resto Cafe')
 
 @push('styles')
 <style>
@@ -128,9 +128,9 @@
         white-space: nowrap;
     }
     .pos-tab.active {
-        border-color: #E53E3E;
-        color: #E53E3E;
-        background: #FFF5F5;
+        border-color: #16A34A;
+        color: #16A34A;
+        background: #F0FDF4;
     }
     .pos-tab i { font-size: 1rem; }
 
@@ -182,7 +182,7 @@
     }
     .pos-item-price {
         font-size: 0.8rem;
-        color: #E53E3E;
+        color: #16A34A;
         font-weight: 600;
     }
     .pos-item-id {
@@ -213,13 +213,13 @@
     /* Takeaway Section */
     .takeaway-section {
         padding: 0.75rem 1rem;
-        background: #EBF8FF;
-        border-bottom: 1px solid #BEE3F8;
+        background: #F0FDF4;
+        border-bottom: 1px solid #DCF0E3;
     }
     .takeaway-label {
         font-size: 0.65rem;
         font-weight: 800;
-        color: #2B6CB0;
+        color: #16A34A;
         display: flex;
         align-items: center;
         gap: 0.4rem;
@@ -249,8 +249,8 @@
         transition: all 0.2s;
     }
     .takeaway-input:focus {
-        border-color: #4299E1;
-        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+        border-color: #22C55E;
+        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
     }
 
     .cart-title-section {
@@ -269,7 +269,7 @@
         color: #2D3748;
     }
     .cart-badge {
-        background: #E53E3E;
+        background: #22C55E;
         color: white;
         font-size: 0.7rem;
         width: 18px;
@@ -370,9 +370,9 @@
     }
     .payment-btn i { font-size: 1.2rem; }
     .payment-btn.active {
-        border-color: #E53E3E;
-        background: #FFF5F5;
-        color: #E53E3E;
+        border-color: #16A34A;
+        background: #F0FDF4;
+        color: #16A34A;
     }
 
     .total-section {
@@ -382,12 +382,12 @@
         margin-bottom: 1.25rem;
     }
     .total-label { font-size: 0.85rem; font-weight: 600; color: #718096; }
-    .total-amount { font-size: 1.75rem; font-weight: 900; color: #E53E3E; }
+    .total-amount { font-size: 1.75rem; font-weight: 900; color: #16A34A; }
 
     .btn-pay {
         width: 100%;
         padding: 1rem;
-        background: #E53E3E;
+        background: #22C55E;
         color: white;
         border: none;
         border-radius: 14px;
@@ -398,10 +398,10 @@
         align-items: center;
         justify-content: center;
         gap: 0.75rem;
-        box-shadow: 0 4px 12px rgba(229, 62, 62, 0.2);
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
         transition: all 0.2s;
     }
-    .btn-pay:hover { background: #C53030; transform: translateY(-2px); }
+    .btn-pay:hover { background: #16A34A; transform: translateY(-2px); }
     .btn-pay:disabled { background: #FED7D7; cursor: not-allowed; box-shadow: none; }
 
     /* Bottom Stats - Professional Compact */
@@ -460,7 +460,7 @@
         {{-- BAGIAN KIRI: DAFTAR MENU --}}
         <div class="pos-left">
             <nav class="pos-tabs">
-                <button class="pos-tab" :class="{'active': activeTab === 'topping'}" @click="activeTab = 'topping'"><i class="bi bi-egg-fried"></i> Topping</button>
+                <button class="pos-tab" :class="{'active': activeTab === 'makanan'}" @click="activeTab = 'makanan'"><i class="bi bi-egg-fried"></i> Makanan</button>
                 <button class="pos-tab" :class="{'active': activeTab === 'minuman'}" @click="activeTab = 'minuman'"><i class="bi bi-cup-straw"></i> Minuman</button>
                 <button class="pos-tab" :class="{'active': activeTab === 'cemilan'}" @click="activeTab = 'cemilan'"><i class="bi bi-basket"></i> Cemilan</button>
                 <button class="pos-tab" :class="{'active': activeTab === 'lainnya'}" @click="activeTab = 'lainnya'"><i class="bi bi-grid"></i> Lainnya</button>
@@ -497,7 +497,7 @@
 
             <div class="cart-title-section">
                 <h2 class="cart-title">
-                    <i class="bi bi-bag-fill" style="color:#E53E3E;"></i> 
+                    <i class="bi bi-bag-fill" style="color:#22C55E;"></i> 
                     Pesanan Saat Ini
                     <span class="cart-badge" x-text="keranjang.length"></span>
                 </h2>
@@ -587,7 +587,7 @@
     {{-- BOTTOM STATS --}}
     <div class="pos-bottom-stats">
         <div class="stat-card">
-            <div class="stat-icon" style="background:#FFF5F5; color:#E53E3E;"><i class="bi bi-receipt-cutoff"></i></div>
+            <div class="stat-icon" style="background:#F0FDF4; color:#22C55E;"><i class="bi bi-receipt-cutoff"></i></div>
             <div class="stat-info">
                 <span class="stat-label">Pesanan Masuk</span>
                 <span class="stat-value">{{ $stats['pesanan_masuk'] }}</span>
@@ -655,8 +655,8 @@
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.data('posKasir', () => ({
-            activeTab: 'topping',
-            toppings: @json($toppings),
+            activeTab: 'makanan',
+            makanan: @json($makanan),
             minuman: @json($minuman),
             cemilan: @json($cemilan),
             keranjang: [],
@@ -700,7 +700,7 @@
 
             get filteredMenu() {
                 let currentMenu = [];
-                if (this.activeTab === 'topping') currentMenu = this.toppings;
+                if (this.activeTab === 'makanan') currentMenu = this.makanan;
                 if (this.activeTab === 'minuman') currentMenu = this.minuman;
                 if (this.activeTab === 'cemilan') currentMenu = this.cemilan;
                 if (this.activeTab === 'lainnya') currentMenu = []; 
@@ -714,7 +714,7 @@
             },
 
             semuaMenu() {
-                return [...this.toppings, ...this.minuman, ...this.cemilan];
+                return [...this.makanan, ...this.minuman, ...this.cemilan];
             },
 
             playBeep() {

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Laporan Bulanan — Seblak Saiton')
+@section('title', 'Laporan Bulanan — Resto Cafe')
 @section('content')
 <div class="admin-topbar no-print">
     <h1><i class="bi bi-graph-up"></i> Laporan Bulanan</h1>

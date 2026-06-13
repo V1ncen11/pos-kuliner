@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title', 'Kelola Menu — Seblak Saiton')
+@section('title', 'Kelola Menu — Resto Cafe')
 @section('content')
 <div class="admin-topbar">
     <h1><i class="bi bi-journal-text"></i> Kelola Menu</h1>
     <a href="{{ route('admin.menu.create') }}" class="btn-primary btn-sm">+ Tambah Menu</a>
 </div>
 
-@foreach(['topping' => 'Topping Seblak', 'minuman' => 'Minuman', 'cemilan' => 'Cemilan'] as $kategori => $label)
+@foreach(['makanan' => 'Makanan', 'minuman' => 'Minuman', 'snack' => 'Snack'] as $kategori => $label)
 <div class="admin-card">
     <div class="admin-card-header">
         <h2>{{ $label }}</h2>

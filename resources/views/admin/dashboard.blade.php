@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Dashboard — Seblak Saiton')
+@section('title', 'Dashboard — Resto Cafe')
 @section('content')
 <div class="admin-topbar">
     <h1><i class="bi bi-grid-1x2-fill"></i> Dashboard</h1>
@@ -68,7 +68,7 @@
                         <td>{{ $pesanan->nama_pemesan }}</td>
                         <td><span class="badge badge-blue">{{ $pesanan->nomor_meja }}</span></td>
                         <td>
-                            <span class="badge" style="background:#E2E8F0;color:#475569;">{{ $pesanan->porsiPesanans->count() }} Porsi</span>
+                            <span class="badge" style="background:#E2E8F0;color:#475569;">{{ $pesanan->detailPesanans->count() }} Item</span>
                         </td>
                         <td><strong>{{ $pesanan->total_harga_format }}</strong></td>
                         <td>{{ strtoupper($pesanan->metode_bayar) }}</td>

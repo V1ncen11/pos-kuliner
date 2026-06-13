@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', $title . ' — Seblak Saiton')
+@section('title', $title . ' — Resto Cafe')
 @section('content')
 <div class="admin-topbar">
     <h1>{!! $menu ? '<i class="bi bi-pencil"></i>' : '<i class="bi bi-plus-circle"></i>' !!} {{ $title }}</h1>
@@ -21,9 +21,9 @@
             <label class="form-label">Kategori *</label>
             <select name="kategori" class="form-select" required>
                 <option value="">Pilih Kategori</option>
-                <option value="topping" {{ old('kategori', $menu?->kategori) === 'topping' ? 'selected' : '' }}>🥩 Topping</option>
+                <option value="makanan" {{ old('kategori', $menu?->kategori) === 'makanan' ? 'selected' : '' }}>🍽️ Makanan</option>
                 <option value="minuman" {{ old('kategori', $menu?->kategori) === 'minuman' ? 'selected' : '' }}>🥤 Minuman</option>
-                <option value="cemilan" {{ old('kategori', $menu?->kategori) === 'cemilan' ? 'selected' : '' }}>🍿 Cemilan</option>
+                <option value="snack" {{ old('kategori', $menu?->kategori) === 'snack' ? 'selected' : '' }}>🍿 Snack</option>
             </select>
             @error('kategori') <p style="color:#E53E3E;font-size:0.8rem;margin-top:0.25rem;">{{ $message }}</p> @enderror
         </div>

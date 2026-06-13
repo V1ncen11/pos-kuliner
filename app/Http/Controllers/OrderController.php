@@ -52,9 +52,9 @@ class OrderController extends Controller
         return view('order.menu', [
             'nama_pemesan' => $request->nama_pemesan,
             'nomor_meja' => $request->nomor_meja,
-            'toppings' => $menus->get('topping', collect()),
+            'makanan' => $menus->get('makanan', collect()),
             'minuman' => $menus->get('minuman', collect()),
-            'cemilan' => $menus->get('cemilan', collect()),
+            'snack' => $menus->get('snack', collect()),
         ]);
     }
 
@@ -68,14 +68,10 @@ class OrderController extends Controller
             'nomor_meja' => 'required|integer|min:1|max:9',
             'metode_bayar' => 'required|in:cash,qris',
             'bukti_bayar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
-            'porsis' => 'required|array|min:1',
-            'porsis.*.nama_porsi' => 'required|string',
-            'porsis.*.level_pedas' => 'required|in:0,1,2,3,4,5',
-            'porsis.*.jenis_rasa' => 'required|in:gurih,gurih_manis',
-            'porsis.*.catatan' => 'nullable|string|max:500',
-            'porsis.*.items' => 'required|array|min:1',
-            'porsis.*.items.*.menu_id' => 'required|exists:menus,id',
-            'porsis.*.items.*.jumlah' => 'required|integer|min:1',
+            'items' => 'required|array|min:1',
+            'items.*.menu_id' => 'required|exists:menus,id',
+            'items.*.jumlah' => 'required|integer|min:1',
+            'items.*.catatan' => 'nullable|string|max:500',
         ]);
 
         // Jika metode QRIS, bukti bayar wajib
@@ -105,39 +101,29 @@ class OrderController extends Controller
                     'total_harga' => 0,
                 ]);
 
-                // 3. Loop porsis
+                // 3. Loop items
                 $totalHarga = 0;
 
-                foreach ($request->porsis as $porsiData) {
-                    $porsi = $pesanan->porsiPesanans()->create([
-                        'nama_porsi' => $porsiData['nama_porsi'],
-                        'level_pedas' => $porsiData['level_pedas'],
-                        'jenis_rasa' => $porsiData['jenis_rasa'],
-                        'catatan' => $porsiData['catatan'] ?? null,
+                foreach ($request->items as $item) {
+                    $menu = Menu::findOrFail($item['menu_id']);
+
+                    if ($menu->stok < $item['jumlah']) {
+                        throw new \Exception("Stok {$menu->nama_menu} tidak cukup. Tersisa: {$menu->stok}");
+                    }
+
+                    $subtotal = $menu->harga * $item['jumlah'];
+
+                    DetailPesanan::create([
+                        'pesanan_id' => $pesanan->id,
+                        'menu_id' => $menu->id,
+                        'jumlah' => $item['jumlah'],
+                        'harga_satuan' => $menu->harga,
+                        'subtotal' => $subtotal,
+                        'catatan' => $item['catatan'] ?? null,
                     ]);
 
-                    // Loop items di dalam porsi ini
-                    foreach ($porsiData['items'] as $item) {
-                        $menu = Menu::findOrFail($item['menu_id']);
-
-                        if ($menu->stok < $item['jumlah']) {
-                            throw new \Exception("Stok {$menu->nama_menu} tidak cukup. Tersisa: {$menu->stok}");
-                        }
-
-                        $subtotal = $menu->harga * $item['jumlah'];
-
-                        DetailPesanan::create([
-                            'pesanan_id' => $pesanan->id,
-                            'porsi_pesanan_id' => $porsi->id,
-                            'menu_id' => $menu->id,
-                            'jumlah' => $item['jumlah'],
-                            'harga_satuan' => $menu->harga,
-                            'subtotal' => $subtotal,
-                        ]);
-
-                        $menu->decrement('stok', $item['jumlah']);
-                        $totalHarga += $subtotal;
-                    }
+                    $menu->decrement('stok', $item['jumlah']);
+                    $totalHarga += $subtotal;
                 }
 
                 // 4. Update total harga
@@ -162,7 +148,7 @@ class OrderController extends Controller
     public function sukses(string $kode)
     {
         $pesanan = Pesanan::where('kode_pesanan', $kode)
-            ->with(['porsiPesanans.detailPesanans.menu'])
+            ->with(['detailPesanans.menu'])
             ->firstOrFail();
 
         return view('order.sukses', compact('pesanan'));

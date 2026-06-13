@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Admin — Seblak Saiton')</title>
+    <title>@yield('title', 'Admin — Resto Cafe')</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
     <div class="admin-layout">
         {{-- SIDEBAR --}}
         <aside class="admin-sidebar" id="sidebar">
-            <div class="sidebar-logo"><i class="bi bi-fire" style="color:#60A5FA;"></i> Seblak Saiton</div>
+            <div class="sidebar-logo"><i class="bi bi-flower2" style="color:#4ADE80;"></i> Resto Cafe</div>
             <nav class="sidebar-nav">
                 <a href="{{ route('admin.dashboard') }}" class="sidebar-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                     <span class="icon"><i class="bi bi-grid-1x2-fill"></i></span> Dashboard
@@ -287,6 +287,8 @@
                                 position: 'center',
                                 icon: 'success',
                                 iconColor: '#2563EB',
+                                width: 400,
+                                padding: '1.5em',
                                 background: 'rgba(255, 255, 255, 0.95)',
                                 showConfirmButton: true,
                                 confirmButtonText: 'LIHAT PESANAN',
@@ -305,8 +307,8 @@
                                 },
                                 title: `<div style="font-family: 'Poppins', sans-serif;">
                                             <span style="font-weight:800; color:#2563EB; font-size:0.85rem; letter-spacing:2px; display:block; margin-bottom:8px;">PESANAN BARU MASUK!</span>
-                                            <div style="font-size: 1.5rem; color:#0F172A; margin-bottom:10px;"><strong>${data.nama}</strong></div>
-                                            <div style="font-size: 1rem; color:#64748B;">Meja ${data.meja} • ${data.porsi_count} Porsi • ${data.kode}</div>
+                                            <div style="font-size: 1.2rem; color:#0F172A; margin-bottom:10px;"><strong>${data.nama}</strong></div>
+                                            <div style="font-size: 0.85rem; color:#64748B;">Meja ${data.meja} • ${data.item_count} Item • ${data.kode}</div>
                                         </div>`,
                             }).then((result) => {
                                 if (result.isConfirmed) {

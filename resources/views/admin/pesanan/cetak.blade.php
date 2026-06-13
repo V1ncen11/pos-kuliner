@@ -133,9 +133,9 @@
 <div class="receipt">
     {{-- HEADER --}}
     <div class="text-center mb-2">
-        <div class="fs-lg bold">SEBLAK SAITON</div>
+        <div class="fs-lg bold">RESTO CAFE</div>
         <div class="fs-sm muted mt-1">Self-Order System</div>
-        <div class="fs-sm muted">Sukaasih, Singaparna, Tasikmalaya Regency, West Java</div>
+        <div class="fs-sm muted">Pusat Kota</div>
     </div>
 
     <hr class="divider-double">
@@ -168,22 +168,17 @@
 
     {{-- ITEMS --}}
     <div class="mb-1">
-        @foreach($pesanan->porsiPesanans as $porsi)
-        <div class="bold mt-2">-- {{ strtoupper($porsi->nama_porsi) }} --</div>
-        <div class="fs-sm muted mb-1">{{ $porsi->level_pedas_label }} | {{ $porsi->jenis_rasa_label }}</div>
-        @if($porsi->catatan)
-            <div class="fs-sm muted mb-1">Catatan: {{ $porsi->catatan }}</div>
-        @endif
-        
-        @foreach($porsi->detailPesanans as $detail)
+        @foreach($pesanan->detailPesanans as $detail)
         <div class="item-row">
-            <div>{{ $detail->menu->nama_menu }}</div>
+            <div class="bold">{{ $detail->menu->nama_menu }}</div>
             <div class="row item-qty">
                 <span>{{ $detail->jumlah }} x Rp {{ number_format($detail->harga_satuan, 0, ',', '.') }}</span>
                 <span class="right">Rp {{ number_format($detail->subtotal, 0, ',', '.') }}</span>
             </div>
+            @if($detail->catatan)
+                <div class="fs-sm muted mt-1">Catatan: {{ $detail->catatan }}</div>
+            @endif
         </div>
-        @endforeach
         @endforeach
     </div>
 
@@ -214,7 +209,7 @@
     {{-- FOOTER --}}
     <div class="text-center mt-2">
         <div class="fs-sm">Terima kasih sudah memesan!</div>
-        <div class="fs-sm muted mt-1">Seblak Saiton &mdash; Pedes Nikmat!</div>
+        <div class="fs-sm muted mt-1">Resto Cafe &mdash; Best Food in Town!</div>
         <div class="fs-sm muted mt-1">{{ $pesanan->created_at->format('d/m/Y H:i:s') }}</div>
     </div>
 </div>

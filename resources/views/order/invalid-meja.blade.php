@@ -1,5 +1,5 @@
 @extends('layouts.order')
-@section('title', 'Seblak Saiton — Meja Tidak Valid')
+@section('title', 'Resto Cafe — Meja Tidak Valid')
 @section('content')
 <div class="container-order" style="display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;">
     <div class="card animate-slide-up" style="max-width:360px;width:100%;">

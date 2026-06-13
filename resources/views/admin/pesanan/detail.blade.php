@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Detail Pesanan — Seblak Saiton')
+@section('title', 'Detail Pesanan — Resto Cafe')
 @section('content')
 <div class="admin-topbar">
     <h1><i class="bi bi-receipt"></i> Detail Pesanan #{{ $pesanan->kode_pesanan }}</h1>
@@ -62,7 +62,7 @@
         <div class="admin-card">
             <h3 class="font-poppins" style="margin-bottom:1rem;font-weight:700;"><i class="bi bi-arrow-repeat"></i> Status Pesanan</h3>
             <p style="margin-bottom:1rem;">
-                Status Dapur: <span class="badge {{ $pesanan->status === 'selesai' ? 'badge-green' : ($pesanan->status === 'diproses' ? 'badge-blue' : ($pesanan->status === 'menunggu_verifikasi' ? 'badge-yellow' : 'badge-red')) }}" style="font-size:0.85rem;margin-right:0.5rem;">{{ $pesanan->status_label }}</span>
+                Status Order: <span class="badge {{ $pesanan->status === 'selesai' ? 'badge-green' : ($pesanan->status === 'diproses' ? 'badge-blue' : ($pesanan->status === 'menunggu_verifikasi' ? 'badge-yellow' : 'badge-red')) }}" style="font-size:0.85rem;margin-right:0.5rem;">{{ $pesanan->status_label }}</span>
                 Status Pembayaran: <span class="badge {{ $pesanan->is_lunas ? 'badge-green' : 'badge-red' }}" style="font-size:0.85rem;">{{ $pesanan->is_lunas ? '✅ Lunas' : '❌ Belum Lunas' }}</span>
             </p>
 
@@ -95,26 +95,18 @@
         {{-- ITEMS --}}
         <div class="admin-card">
             <h3 class="font-poppins" style="margin-bottom:1rem;font-weight:700;"><i class="bi bi-cart3"></i> Item Pesanan</h3>
-            @foreach($pesanan->porsiPesanans as $porsi)
-            <div style="margin-bottom:1rem;background:#F8F9FA;padding:0.75rem;border-radius:12px;border:1px solid #E2E8F0;">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
-                    <strong style="color:var(--admin-primary);">{{ $porsi->nama_porsi }}</strong>
-                    <span style="font-size:0.75rem;color:var(--admin-text-muted);">{{ $porsi->level_pedas_label }} • {{ $porsi->jenis_rasa_label }}</span>
-                </div>
-                @if($porsi->catatan)
-                    <div style="font-size:0.75rem;color:var(--admin-text-muted);font-style:italic;margin-bottom:0.5rem;"><i class="bi bi-pencil-square"></i> {{ $porsi->catatan }}</div>
-                @endif
-                
-                @foreach($porsi->detailPesanans as $detail)
-                <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px dashed #E2E8F0;">
-                    <div>
-                        <p style="font-weight:600;font-size:0.9rem;">- {{ $detail->menu->nama_menu }}</p>
-                        <p style="font-size:0.8rem;color:var(--admin-text-muted);">Rp {{ number_format($detail->harga_satuan, 0, ',', '.') }} × {{ $detail->jumlah }}</p>
+            @foreach($pesanan->detailPesanans as $detail)
+                <div style="background:#F8FAFF;padding:0.75rem;border-radius:12px;margin-bottom:0.75rem;border:1px solid #E2E8F0;">
+                    <div style="display:flex;justify-content:space-between;padding:0.25rem 0;font-size:0.9rem;">
+                        <span><strong style="color:var(--admin-primary);">{{ $detail->menu->nama_menu }}</strong> x{{ $detail->jumlah }}</span>
+                        <span style="font-weight:700;">Rp {{ number_format($detail->subtotal, 0, ',', '.') }}</span>
                     </div>
-                    <p style="font-weight:700;font-family:'Poppins',sans-serif;">Rp {{ number_format($detail->subtotal, 0, ',', '.') }}</p>
+                    @if($detail->catatan)
+                        <div style="font-size:0.75rem;color:var(--admin-text-muted);font-style:italic;margin-top:0.25rem;">
+                            <i class="bi bi-pencil-square"></i> {{ $detail->catatan }}
+                        </div>
+                    @endif
                 </div>
-                @endforeach
-            </div>
             @endforeach
             <div style="display:flex;justify-content:space-between;padding:1rem 0;font-family:'Poppins',sans-serif;border-top:2px solid #E0E0E0;margin-top:0.5rem;">
                 <span style="font-weight:700;font-size:1.1rem;">Total</span>

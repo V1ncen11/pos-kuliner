@@ -10,40 +10,29 @@ class MenuSeeder extends Seeder
     public function run(): void
     {
         $menus = [
-            // === TOPPING SEBLAK ===
-            ['nama_menu' => 'Bakso Urat',     'kategori' => 'topping', 'harga' => 5000,  'stok' => 100],
-            ['nama_menu' => 'Bakso Halus',     'kategori' => 'topping', 'harga' => 4000,  'stok' => 100],
-            ['nama_menu' => 'Ceker Ayam',      'kategori' => 'topping', 'harga' => 5000,  'stok' => 80],
-            ['nama_menu' => 'Sosis',           'kategori' => 'topping', 'harga' => 4000,  'stok' => 100],
-            ['nama_menu' => 'Telur Puyuh',     'kategori' => 'topping', 'harga' => 4000,  'stok' => 100],
-            ['nama_menu' => 'Telur Ayam',      'kategori' => 'topping', 'harga' => 5000,  'stok' => 50],
-            ['nama_menu' => 'Kerupuk Seblak',  'kategori' => 'topping', 'harga' => 3000,  'stok' => 200],
-            ['nama_menu' => 'Mie',             'kategori' => 'topping', 'harga' => 3000,  'stok' => 100],
-            ['nama_menu' => 'Kwetiau',         'kategori' => 'topping', 'harga' => 3000,  'stok' => 100],
-            ['nama_menu' => 'Makaroni',        'kategori' => 'topping', 'harga' => 3000,  'stok' => 100],
-            ['nama_menu' => 'Sayap Ayam',      'kategori' => 'topping', 'harga' => 7000,  'stok' => 50],
-            ['nama_menu' => 'Dumpling',        'kategori' => 'topping', 'harga' => 5000,  'stok' => 80],
-            ['nama_menu' => 'Fish Cake',       'kategori' => 'topping', 'harga' => 4000,  'stok' => 80],
-            ['nama_menu' => 'Tahu',            'kategori' => 'topping', 'harga' => 3000,  'stok' => 100],
-            ['nama_menu' => 'Cuanki',          'kategori' => 'topping', 'harga' => 4000,  'stok' => 80],
-
+            // === MAKANAN ===
+            ['nama_menu' => 'Nasi Goreng Spesial', 'kategori' => 'makanan', 'harga' => 25000, 'stok' => 50],
+            ['nama_menu' => 'Ayam Bakar Madu',     'kategori' => 'makanan', 'harga' => 30000, 'stok' => 50],
+            ['nama_menu' => 'Mie Gacoan Level 1-5', 'kategori' => 'makanan', 'harga' => 15000, 'stok' => 100],
+            ['nama_menu' => 'Nasi Gila',           'kategori' => 'makanan', 'harga' => 22000, 'stok' => 50],
+            ['nama_menu' => 'Spaghetti Bolognese', 'kategori' => 'makanan', 'harga' => 28000, 'stok' => 40],
+            ['nama_menu' => 'Kwetiau Goreng',      'kategori' => 'makanan', 'harga' => 24000, 'stok' => 50],
+            
             // === MINUMAN ===
-            ['nama_menu' => 'Es Teh Manis',    'kategori' => 'minuman', 'harga' => 5000,  'stok' => 100],
-            ['nama_menu' => 'Es Jeruk',        'kategori' => 'minuman', 'harga' => 7000,  'stok' => 100],
-            ['nama_menu' => 'Air Mineral',     'kategori' => 'minuman', 'harga' => 4000,  'stok' => 100],
-            ['nama_menu' => 'Pop Ice',         'kategori' => 'minuman', 'harga' => 8000,  'stok' => 80],
-            ['nama_menu' => 'Es Coklat',       'kategori' => 'minuman', 'harga' => 8000,  'stok' => 80],
-            ['nama_menu' => 'Thai Tea',        'kategori' => 'minuman', 'harga' => 10000, 'stok' => 60],
-            ['nama_menu' => 'Teh Hangat',      'kategori' => 'minuman', 'harga' => 4000,  'stok' => 100],
-            ['nama_menu' => 'Kopi Susu',       'kategori' => 'minuman', 'harga' => 12000, 'stok' => 50],
+            ['nama_menu' => 'Es Kopi Susu Aren',   'kategori' => 'minuman', 'harga' => 18000, 'stok' => 100],
+            ['nama_menu' => 'Matcha Latte',        'kategori' => 'minuman', 'harga' => 22000, 'stok' => 80],
+            ['nama_menu' => 'Lychee Tea',          'kategori' => 'minuman', 'harga' => 15000, 'stok' => 100],
+            ['nama_menu' => 'Lemon Tea',           'kategori' => 'minuman', 'harga' => 12000, 'stok' => 100],
+            ['nama_menu' => 'Air Mineral',         'kategori' => 'minuman', 'harga' => 5000,  'stok' => 100],
+            ['nama_menu' => 'Es Coklat',           'kategori' => 'minuman', 'harga' => 20000, 'stok' => 80],
 
-            // === CEMILAN ===
-            ['nama_menu' => 'Cireng Isi',      'kategori' => 'cemilan', 'harga' => 10000, 'stok' => 50],
-            ['nama_menu' => 'Batagor',         'kategori' => 'cemilan', 'harga' => 12000, 'stok' => 50],
-            ['nama_menu' => 'Siomay',          'kategori' => 'cemilan', 'harga' => 10000, 'stok' => 50],
-            ['nama_menu' => 'Kentang Goreng',  'kategori' => 'cemilan', 'harga' => 12000, 'stok' => 40],
-            ['nama_menu' => 'Pisang Goreng',   'kategori' => 'cemilan', 'harga' => 8000,  'stok' => 50],
-            ['nama_menu' => 'Dimsum Ayam',     'kategori' => 'cemilan', 'harga' => 10000, 'stok' => 50],
+            // === SNACK ===
+            ['nama_menu' => 'Kentang Goreng',      'kategori' => 'snack', 'harga' => 15000, 'stok' => 60],
+            ['nama_menu' => 'Dimsum Ayam',         'kategori' => 'snack', 'harga' => 18000, 'stok' => 50],
+            ['nama_menu' => 'Cireng Bumbu Rujak',  'kategori' => 'snack', 'harga' => 12000, 'stok' => 60],
+            ['nama_menu' => 'Pisang Bakar Coklat', 'kategori' => 'snack', 'harga' => 16000, 'stok' => 50],
+            ['nama_menu' => 'Roti Bakar Keju',     'kategori' => 'snack', 'harga' => 16000, 'stok' => 50],
+            ['nama_menu' => 'Platter Mix',         'kategori' => 'snack', 'harga' => 25000, 'stok' => 30],
         ];
 
         foreach ($menus as $menu) {

@@ -13,11 +13,11 @@ class DetailPesanan extends Model
 
     protected $fillable = [
         'pesanan_id',
-        'porsi_pesanan_id',
         'menu_id',
         'jumlah',
         'harga_satuan',
         'subtotal',
+        'catatan',
     ];
 
     protected function casts(): array
@@ -37,10 +37,6 @@ class DetailPesanan extends Model
         return $this->belongsTo(Pesanan::class);
     }
 
-    public function porsiPesanan()
-    {
-        return $this->belongsTo(PorsiPesanan::class);
-    }
 
     /**
      * Relasi: detail pesanan merujuk ke satu menu.

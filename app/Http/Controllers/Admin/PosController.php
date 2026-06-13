@@ -16,7 +16,7 @@ class PosController extends Controller
      */
     public function index()
     {
-        $toppings = Menu::where('kategori', 'topping')->where('tersedia', true)->get();
+        $makanan = Menu::where('kategori', 'makanan')->where('tersedia', true)->get();
         $minuman = Menu::where('kategori', 'minuman')->where('tersedia', true)->get();
         $cemilan = Menu::where('kategori', 'cemilan')->where('tersedia', true)->get();
 
@@ -26,7 +26,7 @@ class PosController extends Controller
             'total_hari_ini' => Pesanan::whereDate('created_at', $today)->where('status', 'selesai')->sum('total_harga'),
         ];
 
-        return view('admin.pos.index', compact('toppings', 'minuman', 'cemilan', 'stats'));
+        return view('admin.pos.index', compact('makanan', 'minuman', 'cemilan', 'stats'));
     }
 
     /**

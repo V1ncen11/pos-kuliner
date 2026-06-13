@@ -39,7 +39,7 @@ class Pesanan extends Model
     /**
      * Relasi: pesanan memiliki banyak detail item.
      */
-    public function detailPesanan()
+    public function detailPesanans()
     {
         return $this->hasMany(DetailPesanan::class);
     }

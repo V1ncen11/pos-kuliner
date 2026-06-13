@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'QR Code Meja — Seblak Saiton')
+@section('title', 'QR Code Meja — Resto Cafe')
 @section('content')
 <div class="admin-topbar no-print">
     <h1><i class="bi bi-qr-code"></i> QR Code Meja</h1>
@@ -15,10 +15,10 @@
     <div class="qr-card">
         <h2 style="font-family:'Poppins',sans-serif;font-weight:800;font-size:2rem;margin-bottom:0.5rem;">Meja {{ $i }}</h2>
         <div class="qr-image-wrapper">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ urlencode(url('/order?meja='.$i)) }}" alt="QR Code Meja {{ $i }}" style="width:100%;max-width:200px;border-radius:12px;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ urlencode(rtrim(config('app.url'), '/') . '/?meja='.$i) }}" alt="QR Code Meja {{ $i }}" style="width:100%;max-width:200px;border-radius:12px;">
         </div>
         <p style="margin-top:1rem;font-size:0.8rem;color:#666;">Scan untuk memesan</p>
-        <div style="margin-top:0.5rem;font-weight:700;font-size:0.9rem;">Seblak Saiton</div>
+        <div style="margin-top:0.5rem;font-weight:700;font-size:1.1rem;color:var(--admin-primary);"><i class="bi bi-flower2"></i> Resto Cafe</div>
     </div>
     @endfor
 </div>

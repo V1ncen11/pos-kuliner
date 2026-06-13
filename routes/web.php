@@ -12,11 +12,15 @@ use Illuminate\Support\Facades\Route;
 | Halaman Utama — Redirect ke Order
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () {
+Route::get('/', function (\Illuminate\Http\Request $request) {
+    $meja = $request->query('meja');
+    $menus = \App\Models\Menu::tersedia()->get()->groupBy('kategori');
+    
     $mejaTerisi = \App\Models\Pesanan::whereIn('status', ['menunggu_verifikasi', 'belum_bayar', 'diproses'])
         ->pluck('nomor_meja')
         ->toArray();
-    return view('welcome', compact('mejaTerisi'));
+        
+    return view('welcome', compact('mejaTerisi', 'menus', 'meja'));
 })->name('home');
 
 /*
@@ -25,7 +29,7 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 */
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');
-Route::post('/order/menu', [OrderController::class, 'menu'])->name('order.menu');
+Route::get('/order/menu', [OrderController::class, 'menu'])->name('order.menu');
 Route::post('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
 Route::get('/order/sukses/{kode}', [OrderController::class, 'sukses'])->name('order.sukses');
 

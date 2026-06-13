@@ -26,7 +26,7 @@ class DashboardController extends Controller
             'total_menu' => Menu::count(),
         ];
 
-        $pesananTerbaru = Pesanan::with('porsiPesanans.detailPesanans.menu')
+        $pesananTerbaru = Pesanan::with('detailPesanans.menu')
             ->latest()
             ->take(10)
             ->get();
@@ -39,7 +39,7 @@ class DashboardController extends Controller
      */
     public function pesanan(Request $request)
     {
-        $query = Pesanan::with('porsiPesanans.detailPesanans.menu')->latest();
+        $query = Pesanan::with('detailPesanans.menu')->latest();
 
         if ($request->filled('status')) {
             $query->where('status', $request->status);
@@ -59,7 +59,7 @@ class DashboardController extends Controller
      */
     public function detailPesanan(int $id)
     {
-        $pesanan = Pesanan::with('porsiPesanans.detailPesanans.menu')->findOrFail($id);
+        $pesanan = Pesanan::with('detailPesanans.menu')->findOrFail($id);
 
         return view('admin.pesanan.detail', compact('pesanan'));
     }
@@ -90,7 +90,7 @@ class DashboardController extends Controller
      */
     public function cetakStruk(int $id)
     {
-        $pesanan = Pesanan::with('porsiPesanans.detailPesanans.menu')->findOrFail($id);
+        $pesanan = Pesanan::with('detailPesanans.menu')->findOrFail($id);
 
         return view('admin.pesanan.cetak', compact('pesanan'));
     }
@@ -144,7 +144,7 @@ class DashboardController extends Controller
      */
     public function checkNewOrders()
     {
-        $latestOrder = Pesanan::withCount('porsiPesanans')->latest()->first();
+        $latestOrder = Pesanan::withCount('detailPesanans')->latest()->first();
         $newOrdersCount = Pesanan::whereIn('status', ['menunggu_verifikasi', 'belum_bayar'])->count();
         
         return response()->json([
@@ -152,7 +152,7 @@ class DashboardController extends Controller
             'kode' => $latestOrder ? $latestOrder->kode_pesanan : '',
             'nama' => $latestOrder ? $latestOrder->nama_pemesan : '',
             'meja' => $latestOrder ? $latestOrder->nomor_meja : '',
-            'porsi_count' => $latestOrder ? $latestOrder->porsi_pesanans_count : 0,
+            'item_count' => $latestOrder ? $latestOrder->detail_pesanans_count : 0,
             'new_orders_count' => $newOrdersCount,
         ]);
     }
